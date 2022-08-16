@@ -16,7 +16,7 @@ import br.com.alura.orgs.model.Usuario
         Produto::class,
         Usuario::class
     ],
-    version = 2,
+    version = 1,
     exportSchema = true
 )
 @TypeConverters(Converters::class)
@@ -24,7 +24,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun produtoDao(): ProdutoDao
 
-    abstract fun usuarioDao(): UsuarioDao
+//    abstract fun usuarioDao(): UsuarioDao
 
     companion object {
         @Volatile
@@ -34,8 +34,7 @@ abstract class AppDatabase : RoomDatabase() {
                 context,
                 AppDatabase::class.java,
                 "orgs.db"
-            ).fallbackToDestructiveMigration()
-                .build().also {
+            ).build().also {
                 db = it
             }
         }
