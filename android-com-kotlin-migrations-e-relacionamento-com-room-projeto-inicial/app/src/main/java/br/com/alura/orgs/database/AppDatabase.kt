@@ -24,7 +24,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun produtoDao(): ProdutoDao
 
-//    abstract fun usuarioDao(): UsuarioDao
+    abstract fun usuarioDao(): UsuarioDao
 
     companion object {
         @Volatile
@@ -34,7 +34,8 @@ abstract class AppDatabase : RoomDatabase() {
                 context,
                 AppDatabase::class.java,
                 "orgs.db"
-            ).build().also {
+            ).addMigrations(MIGRATION_1_2)
+                .build().also {
                 db = it
             }
         }
